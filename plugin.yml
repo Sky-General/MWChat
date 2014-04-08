@@ -1,0 +1,7 @@
+name: MWChat
+author: [Sky_General109, TheInfoBug]
+description: MWCraft chat manager
+version: 1.0.1
+main: com.mwcraft.chat.Main
+commands:
+  link:
