@@ -13,16 +13,27 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.permissions.Permission;
+import org.bukkit.plugin.RegisteredServiceProvider;
+
+import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 public class Listenerchat implements Listener {
+	
 	Main plugin;
 	public Listenerchat(Main plugin){
 		Bukkit.getServer().getPluginManager().registerEvents(this, plugin);
-		this.plugin = plugin;
 		}
+	
+	
+	
+	
 	@EventHandler
 	public void onPlayerChat(AsyncPlayerChatEvent e) {
+		
 		String message = e.getMessage();
+		e.setFormat(colorize(PermissionsEx.getUser(e.getPlayer().getName()).getPrefix() +  e.getPlayer().getName() + PermissionsEx.getUser(e.getPlayer().getName()).getSuffix() + ": " + e.getMessage()));
+		
 		Player p = e.getPlayer();
 
 		Player player = e.getPlayer();
@@ -73,5 +84,10 @@ public class Listenerchat implements Listener {
 			}
 		catch (Exception localException){
 			}
+		}
+	
+	
+	public String colorize(String message){
+		return ChatColor.translateAlternateColorCodes('&', message);
 		}
 	}
